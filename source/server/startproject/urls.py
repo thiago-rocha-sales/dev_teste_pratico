@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
-from jogo.apiviews import PlataformaViewSet
+from jogo.apiviews import PlataformaViewSet, JogoViewSet, AvaliacaoViewSet
 
 router = DefaultRouter()
 router.register(r'plataformas', PlataformaViewSet, base_name='plataformas')
+router.register(r'jogos', JogoViewSet, base_name='jogos')
+router.register(r'avaliacoes', AvaliacaoViewSet, base_name='avaliacoes')
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

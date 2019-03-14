@@ -28,3 +28,9 @@ class Avaliacao(models.Model):
             MinValueValidator(0)
         ]
     )
+
+    def __str__(self):
+        return "{} - {}".format(
+            self.jogo.nome,
+            self.valor
+        )

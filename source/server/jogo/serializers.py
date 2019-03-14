@@ -2,19 +2,39 @@ from rest_framework import serializers
 from .models import Avaliacao, Jogo, Plataforma
 
 
-class PlataformaSerializer(serializers.ModelSerializer):
+class PlataformaSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='plataformas-detail', read_only=True)
+
     class Meta:
         model = Plataforma
-        fields = ('nome',)
+        fields = ('url', 'nome')
 
 
-class JogoSerializer(serializers.ModelSerializer):
+class JogoSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='jogos-detail', read_only=True)
+
+    plataforma = serializers.HyperlinkedRelatedField(
+        many=True,
+        view_name='plataformas-detail',
+        queryset=Plataforma.objects.all())
+
     class Meta:
         model = Jogo
-        fields = ('nome', 'data_lancamento', 'plataforma')
+        fields = (
+            'url',
+            'nome', 
+            'data_lancamento', 
+            'plataforma')
 
 
-class AvaliacaoSerializer(serializers.ModelSerializer):
+class AvaliacaoSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='avaliacaos-detail', read_only=True)
+
+    jogos = serializers.HyperlinkedRelatedField(
+        many=True,
+        view_name='jogos-detail',
+        queryset=Jogo.objects.all())
+
     class Meta:
         model = Avaliacao
-        fields = ('jogo', 'user', 'valor')
+        fields = ('url', 'jogos', 'user', 'valor')

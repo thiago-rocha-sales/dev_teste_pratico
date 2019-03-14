@@ -83,10 +83,10 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jogos',
-        'USER': 'root',
-        'PASSWORD': 'toor',
-        'HOST': 'postgres',
+        'NAME': 'thiagorocha_test',
+        'USER': 'postgres',
+        'PASSWORD': 'geo@123',
+        'HOST': '172.16.8.8',
         'PORT': 5432
     }
 }
@@ -130,3 +130,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL.strip('/'))
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
