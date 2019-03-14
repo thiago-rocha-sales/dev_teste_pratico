@@ -13,7 +13,8 @@ RUN pip install --upgrade pip && \
     djangorestframework \
     django-extensions==2.0.7 \
     psycopg2-binary \
-    gunicorn
+    gunicorn \
+    whitenoise
 
 
 FROM python:3.6-alpine
@@ -34,8 +35,8 @@ RUN set -x ; \
     addgroup -g 1000 -S nginx ; \
     adduser -u 1000 -D -S -G nginx nginx ; exit 0
 
-WORKDIR /source
-
 COPY --chown=nginx:nginx ./source /source
 
 USER nginx
+
+WORKDIR /source
