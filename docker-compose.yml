@@ -8,6 +8,8 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./source/client:/usr/share/nginx/html
+      # - ./source/static:/usr/share/nginx/html/static
     links:
       - django
   

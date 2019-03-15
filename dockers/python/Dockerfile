@@ -13,8 +13,8 @@ RUN pip install --upgrade pip && \
     djangorestframework \
     django-extensions==2.0.7 \
     psycopg2-binary \
-    gunicorn \
-    whitenoise
+    gunicorn 
+    # whitenoise
 
 
 FROM python:3.6-alpine
