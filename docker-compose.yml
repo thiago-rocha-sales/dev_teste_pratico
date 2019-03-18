@@ -19,8 +19,9 @@ services:
       dockerfile: ./dockers/python/Dockerfile
     volumes:
       - ./source:/source
-    command:
-      gunicorn --chdir ./server startproject.wsgi -b 0.0.0.0:8000
+    command: sh -c "
+      python ./server/manage.py migrate && 
+      gunicorn --chdir ./server startproject.wsgi -b 0.0.0.0:8000 "
     depends_on:
       - postgres
 
@@ -33,7 +34,7 @@ services:
     ports:
     - "5432:5432"
 
-  node:
-    image: node:alpine
-    volumes:
-      - ./source/client:/client
+  # node:
+  #   image: node:alpine
+  #   volumes:
+  #     - ./source/client:/client
