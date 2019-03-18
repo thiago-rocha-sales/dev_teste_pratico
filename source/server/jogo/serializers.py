@@ -7,7 +7,7 @@ class PlataformaSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Plataforma
-        fields = ('url', 'nome')
+        fields = ('id', 'url', 'nome')
 
 
 class JogoSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,6 +21,7 @@ class JogoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Jogo
         fields = (
+            'id',
             'url',
             'nome', 
             'data_lancamento', 
@@ -37,4 +38,4 @@ class AvaliacaoSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Avaliacao
-        fields = ('url', 'jogos', 'user', 'valor')
+        fields = ('id', 'url', 'jogos', 'user', 'valor')
